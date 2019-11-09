@@ -22,6 +22,10 @@ app.get("/gradeQuiz", function (req, res) {
         score += 12.5;
         f1 = "You got it!";
     }
+    if (req.query.q2 == "mo") {
+        score += 12.5;
+        f1 = "You got it!";
+    }
     res.send({"score": score, "feedback1": f1, "feedback2": f2});
 });
 
