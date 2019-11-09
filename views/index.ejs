@@ -169,7 +169,6 @@
                 },
                 success: function (result, status) {
                     // alert(result);
-                    $("#totalScore").html("Total score: " + result.score);
                     $("#q1Feedback").html(result.feedback1);
                     $("#q2Feedback").html(result.feedback2);
                     $("#q3Feedback").html(result.feedback3);
@@ -241,6 +240,17 @@
                     } else {
                         $("#q8Feedback").attr("class", "bg-warning text-white");
                         $("#markImg8").html("<img src='img/xmark.png' alt='xmark'>");
+                    }
+
+                    if (result.score < 80) {
+                        $("#totalScore").attr("class", "text-danger");
+                    } else {
+                        $("#totalScore").attr("class", "text-success");
+                    }
+                    if (result.score < 80) {
+                        $("#totalScore").html("Total Score: " + result.score);
+                    } else {
+                        $("#totalScore").html("Congratulations! You reached a total score of " + result.score + " points!");
                     }
                 }
             });//ajax
