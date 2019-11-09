@@ -24,7 +24,7 @@ app.get("/", function(req, res){
 // because the page was never left and still has the answers.)
 app.post("/", function(req, res){
 
-    console.log(req);
+    console.log(req.questions["1"]);
 
     gradeQuiz();
 
