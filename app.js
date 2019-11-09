@@ -26,7 +26,7 @@ app.get("/gradeQuiz", function (req, res) {
         score += 12.5;
         f2 = "You got it!";
     }
-    console.log(req.query.q3)
+    console.log("Value: " + req.query.q3);
     if (req.query.q3 == true) {
         score += 12.5;
         f3 = "You got it!";
@@ -37,7 +37,6 @@ app.get("/gradeQuiz", function (req, res) {
     }
     res.send({"score": score, "feedback1": f1, "feedback2": f2, "feedback3": f3, "feedback4": f4});
 });
-
 
 // running server
 app.listen(process.env.PORT || 3000, process.env.IP, function () {
