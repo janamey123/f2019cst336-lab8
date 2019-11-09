@@ -29,10 +29,10 @@
 <br>
 
 <h3><span id="markImg3"></span>What presidents are carved into mount Rushmore?</h3>
-<input type="checkbox" name="q3a" id="Jackson"> <label for="Jackson"> A. Jackson </label>
-<input type="checkbox" checked name="q3b" id="Franklin"> <label for="Franklin">B. Franklin </label>
-<input type="checkbox" name="q3c" id="Jefferson"> <label for="Jefferson">T. Jefferson</label>
-<input type="checkbox" name="q3d" id="Roosevelt"> <label for="Roosevelt">T. Roosevelt</label>
+<input type="checkbox" value="ja" name="q3a" id="Jackson"> <label for="Jackson"> A. Jackson </label>
+<input type="checkbox" value="fr" name="q3b" id="Franklin"> <label for="Franklin">B. Franklin </label>
+<input type="checkbox" value="je" name="q3c" id="Jefferson"> <label for="Jefferson">T. Jefferson</label>
+<input type="checkbox" value="ro" name="q3d" id="Roosevelt"> <label for="Roosevelt">T. Roosevelt</label>
 <br><br>
 <div id="q3Feedback"></div>
 <br>
@@ -75,12 +75,19 @@
                 url: "/gradeQuiz",
                 dataType: "json",
                 data: {"q1": $("#q1").val(),
-                        "q2": $("#q2").val()
+                        "q2": $("#q2").val(),
+                        "q3a": $("#q3a").is(":checked"),
+                        "q3b": $("#q3b").is(":checked"),
+                        "q3c": $("#q3c").is(":checked"),
+                        "q3d": $("#q3d").is(":checked"),
                 },
                 success: function (result, status) {
                    // alert(result);
                     $("#totalScore").html("Total score: " + result.score);
                     $("#q1Feedback").html(result.feedback1);
+                    $("#q2Feedback").html(result.feedback2);
+                    $("#q3Feedback").html(result.feedback3);
+
 
                 }
             });//ajax

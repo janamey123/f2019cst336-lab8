@@ -24,13 +24,13 @@ app.get("/gradeQuiz", function (req, res) {
     }
     if (req.query.q2 == "mo") {
         score += 12.5;
-        f1 = "You got it!";
+        f2 = "You got it!";
     }
-    if (req.query.q3 == "mo") {
+    if (req.query.q3a && req.query.q3b && !req.query.q3c && !req.query.q3d) {
         score += 12.5;
-        f1 = "You got it!";
+        f3 = "You got it!";
     }
-    res.send({"score": score, "feedback1": f1, "feedback2": f2});
+    res.send({"score": score, "feedback1": f1, "feedback2": f2, "feedback2": f3});
 });
 
 
