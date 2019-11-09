@@ -74,9 +74,14 @@
                 method: "GET",
                 url: "/gradeQuiz",
                 dataType: "json",
-                data: {"q1": $("#q1").val()},
+                data: {"q1": $("#q1").val(),
+                        "q2": $("#q2").val()
+                },
                 success: function (result, status) {
-                    alert(result);
+                   // alert(result);
+                    $("#totalScore").html("Total score: " + result.score);
+                    $("#q1Feedback").html(result.feedback1);
+
                 }
             });//ajax
         });
