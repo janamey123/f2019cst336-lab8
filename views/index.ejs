@@ -31,10 +31,10 @@
 <br>
 
 <h3><span id="markImg3"></span>What presidents are carved into mount Rushmore?</h3>
-<input type="checkbox" value="ja" name="q3a" id="Jackson"> <label for="Jackson"> A. Jackson </label>
-<input type="checkbox" value="fr" name="q3b" id="Franklin"> <label for="Franklin">B. Franklin </label>
-<input type="checkbox" value="je" name="q3c" id="Jefferson"> <label for="Jefferson">T. Jefferson</label>
-<input type="checkbox" value="ro" name="q3d" id="Roosevelt"> <label for="Roosevelt">T. Roosevelt</label>
+<input type="checkbox" value="ja" name="q3" id="Jackson"> <label for="Jackson"> A. Jackson </label>
+<input type="checkbox" value="fr" name="q3" id="Franklin"> <label for="Franklin">B. Franklin </label>
+<input type="checkbox" value="je" name="q3" id="Jefferson"> <label for="Jefferson">T. Jefferson</label>
+<input type="checkbox" value="ro" name="q3" id="Roosevelt"> <label for="Roosevelt">T. Roosevelt</label>
 <br><br>
 <div id="q3Feedback"></div>
 <br>
@@ -81,21 +81,18 @@
             $(this).css("background-color", "rgb(255, 255, 0)");
         })
 
-        let q4Response = $("input[name=q4]:checked").val();
 
         $("#submitBtn").on("click", function () {
+            let q3Response = !$("#Franklin").is(":checked") && !$("#Jackson").is(":checked") && $("#Jefferson").is(":checked") && $("#Roosevelt").is(":checked");
+            alert(q3Response);
             $.ajax({
                 method: "GET",
                 url: "/gradeQuiz",
                 dataType: "json",
                 data: {"q1": $("#q1").val(),
                         "q2": $("#q2").val(),
-                        "q3a": $("#Jackson").is(":checked"),
-                        "q3b": $("#Franklin").is(":checked"),
-                        "q3c": $("#Jefferson").is(":checked"),
-                        "q3d": $("#Roosevelt").is(":checked"),
-                        "q4": q4Response
-
+                        "q3": q3Response,
+                        "q4": $("input[name=q4]:checked").val()
                 },
                 success: function (result, status) {
                    // alert(result);
@@ -106,7 +103,6 @@
                     $("#q4Feedback").html(result.feedback4);
 
 
-                    alert(q4Response);
 
                 }
             });//ajax
