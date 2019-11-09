@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+const question1 = false;
+
 // you can optionally use handlebars
 app.set("view engine", "ejs");
 
@@ -22,6 +24,10 @@ app.get("/", function(req, res){
 // because the page was never left and still has the answers.)
 app.post("/", function(req, res){
 
+    console.log(req);
+
+    gradeQuiz();
+
     res.json({
         answers: [
             {
@@ -33,6 +39,11 @@ app.post("/", function(req, res){
     })
 
 } );
+
+function gradeQuiz() {
+
+} // gradeQuiz()
+
 
 // running server
 app.listen(process.env.PORT || 3000, process.env.IP, function(){
