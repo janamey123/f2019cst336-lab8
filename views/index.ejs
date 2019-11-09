@@ -81,6 +81,8 @@
             $(this).css("background-color", "rgb(255, 255, 0)");
         })
 
+        let q4Response = $("input[name=q4]:checked").val();
+
         $("#submitBtn").on("click", function () {
             $.ajax({
                 method: "GET",
@@ -92,7 +94,7 @@
                         "q3b": $("#Franklin").is(":checked"),
                         "q3c": $("#Jefferson").is(":checked"),
                         "q3d": $("#Roosevelt").is(":checked"),
-                        "q4": $("#Rhode Island").is(":checked")
+                        "q4": q4Response
 
                 },
                 success: function (result, status) {
@@ -104,7 +106,7 @@
                     $("#q4Feedback").html(result.feedback4);
 
 
-                    alert($("#Rhode Island").is(":checked"))
+                    alert(q4Response)
 
                 }
             });//ajax
