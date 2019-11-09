@@ -16,8 +16,8 @@ app.get("/", function (req, res) {
 
 app.get("/gradeQuiz", function (req, res) {
     let score = 0;
-    let f1, f2, f3, f4, f5;
-    f1 = f2 = f3 = f4 = f5 = "Wrong!";
+    let f1, f2, f3, f4, f5, f6, f7, f8;
+    f1 = f2 = f3 = f4 = f5 = f6 = f7 = f8 = "Wrong!";
     if (req.query.q1 == "sacramento") {
         score += 12.5;
         f1 = "You got it!";
@@ -35,7 +35,33 @@ app.get("/gradeQuiz", function (req, res) {
         score += 12.5;
         f4 = "You got it!";
     }
-    res.send({"score": score, "feedback1": f1, "feedback2": f2, "feedback3": f3, "feedback4": f4});
+    if (req.query.q5 == "seal2") {
+        score += 12.5;
+        f5 = "You got it!";
+    }
+    if (req.query.q6 == "Southwest") {
+        score += 12.5;
+        f6 = "You got it!";
+    }
+    if (req.query.q7 == "vt") {
+        score += 12.5;
+        f7 = "You got it!";
+    }
+    if (req.query.q8 == true) {
+        score += 12.5;
+        f8 = "You got it!";
+    }
+    res.send({
+        "score": score,
+        "feedback1": f1,
+        "feedback2": f2,
+        "feedback3": f3,
+        "feedback4": f4,
+        "feedback5": f5,
+        "feedback6": f6,
+        "feedback7": f7,
+        "feedback8": f8
+    });
 });
 
 // running server

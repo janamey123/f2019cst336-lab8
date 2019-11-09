@@ -5,7 +5,7 @@
     <title>US Quiz (Express)</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body class="text-center">
@@ -22,7 +22,7 @@
 <select id="q2" name="q2">
     <option value="">Select One</option>
     <option value="ms">Mississippi</option>
-    <option selected value="mo">Missouri</option>
+    <option value="mo">Missouri</option>
     <option value="co">Colorado</option>
     <option value="de">Delaware</option>
 </select>
@@ -54,6 +54,35 @@
 <div id="q5Feedback"></div>
 <br>
 
+<h3><span id="markImg6"></span>What part of the U.S. does Route 66 go through?</h3>
+<div id="q6Choices"></div>
+<div id="q6Feedback"></div>
+<br>
+
+<h3><span id="markImg7"></span>Which of these states was not one of the original 13 colonies?</h3>
+<select id="q7" name="q7">
+    <option value="">Select One</option>
+    <option value="ct">Connecticut</option>
+    <option value="vt">Vermont</option>
+    <option value="sc">South Carolina</option>
+    <option value="nj">New Jersey</option>
+    <option value="ny">New York</option>
+    <option value="pa">Pennsylvania</option>
+</select>
+<br><br>
+<div id="q7Feedback"></div>
+<br>
+
+<h3><span id="markImg8"></span>Which of these National Parks are located in California?</h3>
+<input type="checkbox" id="Yosemite"> <label for="Yosemite">Yosemite N.P.</label>
+<input type="checkbox" id="DeathValley"> <label for="DeathValley">Death Valley N.P.</label>
+<input type="checkbox" id="MonumentValley"> <label for="MonumentValley">Monument Valley N.P.</label>
+<input type="checkbox" id="JoshuaTree"> <label for="JoshuaTree">Joshua Tree N.P.</label>
+<input type="checkbox" id="Zion"> <label for="Zion">Zion N.P.</label>
+<br><br>
+<div id="q8Feedback"></div>
+<br>
+
 <button id="submitBtn" class="btn btn-outline-success"> Submit Quiz</button>
 <br><br>
 
@@ -66,6 +95,8 @@
     $(document).ready(function () {
 
         displayQ4Choices();
+        displayQ6Choices();
+
         //functions
         function displayQ4Choices() {
             let q4ChoicesArray = ["Maine", "Rhode Island", "Maryland", "Delaware"];
@@ -74,6 +105,14 @@
                 $("#q4Choices").append(`<input type="radio" name="q4" id="${q4ChoicesArray[i]}" value="${q4ChoicesArray[i]}"> <label for="${q4ChoicesArray[i]}">${q4ChoicesArray[i]}</label>`);
             }
         }//displayQ4Choices
+
+        function displayQ6Choices() {
+            let q6ChoicesArray = ["Deep South", "Northeast", "Southwest", "Pacific Northwest"];
+            q6ChoicesArray = _.shuffle(q6ChoicesArray);
+            for (let i = 0; i < q6ChoicesArray.length; i++) {
+                $("#q6Choices").append(`<input type="radio" name="q6" id="${q6ChoicesArray[i]}" value="${q6ChoicesArray[i]}"> <label for="${q6ChoicesArray[i]}">${q6ChoicesArray[i]}</label>`);
+            }
+        }// displayQ6Choices
 
         //Event Listeners
         $(".q5choice").on("click", function () {
@@ -87,24 +126,111 @@
             let q2Response = $("#q2").val();
             let q3Response = !$("#Franklin").is(":checked") && !$("#Jackson").is(":checked") && $("#Jefferson").is(":checked") && $("#Roosevelt").is(":checked");
             let q4Response = $("input[name=q4]:checked").val();
-            alert(q3Response);
+            let q5Response = "";
+            if ($("#seal1").css("background-color") == "rgb(255, 255, 0)") {
+                q5Response = "seal1";
+            } else if ($("#seal2").css("background-color") == "rgb(255, 255, 0)") {
+                q5Response = "seal2";
+            } else {
+                q5Response = "seal3";
+            }
+
+            let q6Response = $("input[name=q6]:checked").val();
+            let q7Response = $("#q7").val();
+            let q8Response = $("#Yosemite").is(":checked") && $("#DeathValley").is(":checked") && $("#JoshuaTree").is(":checked") && !$("#MonumentValley").is(":checked") && !$("#Zion").is(":checked");
+
+
+                alert(q3Response);
+                alert(q8Response);
             $.ajax({
                 method: "GET",
                 url: "/gradeQuiz",
                 dataType: "json",
-                data: {"q1": q1Response,
-                        "q2": q2Response,
-                        "q3": q3Response,
-                        "q4": q4Response
+                data: {
+                    "q1": q1Response,
+                    "q2": q2Response,
+                    "q3": q3Response,
+                    "q4": q4Response,
+                    "q5": q5Response,
+                    "q6": q6Response,
+                    "q7": q7Response,
+                    "q8": q8Response
                 },
                 success: function (result, status) {
-                   // alert(result);
+                    // alert(result);
                     $("#totalScore").html("Total score: " + result.score);
                     $("#q1Feedback").html(result.feedback1);
                     $("#q2Feedback").html(result.feedback2);
                     $("#q3Feedback").html(result.feedback3);
                     $("#q4Feedback").html(result.feedback4);
+                    $("#q5Feedback").html(result.feedback5);
+                    $("#q6Feedback").html(result.feedback6);
+                    $("#q7Feedback").html(result.feedback7);
+                    $("#q8Feedback").html(result.feedback8);
 
+                    if (result.feedback1 == "You got it!") {
+                        $("#q1Feedback").attr("class", "bg-success text-white");
+                        $("#markImg1").html("<img src='img/checkmark.png' alt='checkmark'>");
+                    } else {
+                        $("#q1Feedback").attr("class", "bg-warning text-white");
+                        $("#markImg1").html("<img src='img/xmark.png' alt='xmark'>");
+                    }
+
+                    if (result.feedback2 == "You got it!") {
+                        $("#q2Feedback").attr("class", "bg-success text-white");
+                        $("#markImg2").html("<img src='img/checkmark.png' alt='checkmark'>");
+                    } else {
+                        $("#q2Feedback").attr("class", "bg-warning text-white");
+                        $("#markImg2").html("<img src='img/xmark.png' alt='xmark'>");
+                    }
+
+                    if (result.feedback3 == "You got it!") {
+                        $("#q3Feedback").attr("class", "bg-success text-white");
+                        $("#markImg3").html("<img src='img/checkmark.png' alt='checkmark'>");
+                    } else {
+                        $("#q3Feedback").attr("class", "bg-warning text-white");
+                        $("#markImg3").html("<img src='img/xmark.png' alt='xmark'>");
+                    }
+
+                    if (result.feedback4 == "You got it!") {
+                        $("#q4Feedback").attr("class", "bg-success text-white");
+                        $("#markImg4").html("<img src='img/checkmark.png' alt='checkmark'>");
+                    } else {
+                        $("#q4Feedback").attr("class", "bg-warning text-white");
+                        $("#markImg4").html("<img src='img/xmark.png' alt='xmark'>");
+                    }
+
+                    if (result.feedback5 == "You got it!") {
+                        $("#q5Feedback").attr("class", "bg-success text-white");
+                        $("#markImg5").html("<img src='img/checkmark.png' alt='checkmark'>");
+                    } else {
+                        $("#q5Feedback").attr("class", "bg-warning text-white");
+                        $("#markImg5").html("<img src='img/xmark.png' alt='xmark'>");
+                    }
+
+                    if (result.feedback6 == "You got it!") {
+                        $("#q6Feedback").attr("class", "bg-success text-white");
+                        $("#markImg6").html("<img src='img/checkmark.png' alt='checkmark'>");
+                    } else {
+                        $("#q6Feedback").attr("class", "bg-warning text-white");
+                        $("#markImg6").html("<img src='img/xmark.png' alt='xmark'>");
+                    }
+
+                    if (result.feedback7 == "You got it!") {
+                        $("#q7Feedback").attr("class", "bg-success text-white");
+                        $("#markImg7").html("<img src='img/checkmark.png' alt='checkmark'>");
+                    } else {
+                        $("#q7Feedback").attr("class", "bg-warning text-white");
+                        $("#markImg7").html("<img src='img/xmark.png' alt='xmark'>");
+                    }
+
+                    if (result.feedback8 == "You got it!") {
+                        $("#q8Feedback").attr("class", "bg-success text-white");
+                        $("#markImg8").html("<img src='img/checkmark.png' alt='checkmark'>");
+                    } else {
+                        $("#q8Feedback").attr("class", "bg-warning text-white");
+                        $("#markImg8").html("<img src='img/xmark.png' alt='xmark'>");
+                    }
 
 
                 }
