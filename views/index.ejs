@@ -10,12 +10,10 @@
 
 <h1 class="jumbotron"> US Geography Quiz <br> Express Version </h1>
 
-<form action="/finalScore">
-
     <h3><span id="markImg1"></span> What is the capital of California?</h3>
     <input type="text" id="q1" name="q1" value="">
     <br><br>
-    <div id="q1Feedback"><%= feedback1 %></div>
+    <div id="q1Feedback"></div>
     <br>
 
     <h3><span id="markImg2"></span>What is the longest river?</h3>
@@ -57,10 +55,7 @@
     <button class="btn btn-outline-success"> Submit Quiz</button>
     <br><br>
 
-    <h2 id="totalScore" class="text-info">Total score: <%= score %></h2>
-
-</form>
-
+    <h2 id="totalScore" class="text-info">Total score:</h2>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
