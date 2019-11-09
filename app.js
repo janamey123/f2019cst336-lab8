@@ -10,15 +10,17 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 // routes
-app.get("/", function(req, res){
-
-    res.render("index");
-} );
-
+app.get("/", function (req, res) {
+    let score = 0;
+    if (req.query.q1 == "sacramento") {
+        score += 12.5;
+    }
+    res.render("index", {"score": score});
+});
 
 
 // running server
-app.listen(process.env.PORT || 3000, process.env.IP, function(){
+app.listen(process.env.PORT || 3000, process.env.IP, function () {
     console.log("Express server is running...");
 });
 
