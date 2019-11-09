@@ -160,72 +160,7 @@
         }// wrongAnswer
 
         function gradeQuiz() {
-            $("#validationFdbk").html(""); //resets validation feedback
-            if (!isFormValid()) {
-                return;
-            }
 
-            //variables
-            score = 0;
-            let q1Response = $("#q1").val().toLowerCase();
-            let q2Response = $("#q2").val();
-            let q4Response = $("input[name=q4]:checked").val();
-
-            //Question 1
-            if (q1Response == "sacramento") {
-                rightAnswer(1);
-            } else {
-                wrongAnswer(1);
-            }
-
-            //Question 2
-            if (q2Response == "mo") {
-                rightAnswer(2);
-            } else {
-                wrongAnswer(2);
-            }
-
-            //Question 3
-            if ($("#Jefferson").is(":checked") && $("#Roosevelt").is(":checked") && !$("#Jackson").is(":checked") && !$("#Franklin").is(":checked")) {
-                rightAnswer(3);
-            } else {
-                wrongAnswer(3);
-            }
-
-            //Question 4
-            if (q4Response == "Rhode Island") {
-                rightAnswer(4);
-            } else {
-                wrongAnswer(4);
-            }
-
-            //Question 5
-            if ($("#seal2").css("background-color") == "rgb(255, 255, 0)") {
-                rightAnswer(5);
-            } else {
-                wrongAnswer(5);
-            }
-
-            //Question 6
-            if (q4Response == "Southwest") {
-                rightAnswer(6);
-            } else {
-                wrongAnswer(6);
-            }
-
-            //Question 7
-            if (q2Response == "vt") {
-                rightAnswer(7);
-            } else {
-                wrongAnswer(7);
-            }
-
-            //Question 8
-            if ($("#Yosemite").is(":checked") && $("#DeathValley").is(":checked") && $("#JoshuaTree").is(":checked") && !$("#MonumentValley").is(":checked") && !$("#Zion").is(":checked")) {
-                rightAnswer(8);
-            } else {
-                wrongAnswer(8);
-            }
 
             // BEWARE THIS ERROR:
             // SyntaxError: Unexpected token q in JSON at position 0
