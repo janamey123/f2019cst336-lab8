@@ -12,8 +12,7 @@ app.use(express.urlencoded({extended: false}));
 // routes
 app.get("/", function (req, res) {
     let score = 0;
-    question1 = req.query.q1.toLowerCase();
-    if (question1 == "sacramento") {
+    if (req.query.q1 == "sacramento") {
         score += 12.5;
     }
     res.render("index", {"score": score, "query": req.query});
