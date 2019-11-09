@@ -21,6 +21,10 @@ app.get("/", function (req, res) {
     res.render("index", {"score": score, "feedback1": f1, "query": req.query});
 });
 
+app.get("/gradeQuiz", function (req, res) {
+
+});
+
 
 // running server
 app.listen(process.env.PORT || 3000, process.env.IP, function () {
