@@ -124,7 +124,10 @@
         $("#submitBtn").on("click", function () {
             let q1Response = $("#q1").val();
             let q2Response = $("#q2").val();
-            let q3Response = !$("#Franklin").is(":checked") && !$("#Jackson").is(":checked") && $("#Jefferson").is(":checked") && $("#Roosevelt").is(":checked");
+            let q3aResponse = $("#Franklin").is(":checked");
+            let q3bResponse = $("#Jackson").is(":checked");
+            let q3cResponse = $("#Jefferson").is(":checked");
+            let q3dResponse = $("#Roosevelt").is(":checked")
             let q4Response = $("input[name=q4]:checked").val();
             let q5Response = "";
             if ($("#seal1").css("background-color") == "rgb(255, 255, 0)") {
@@ -137,11 +140,12 @@
 
             let q6Response = $("input[name=q6]:checked").val();
             let q7Response = $("#q7").val();
-            let q8Response = $("#Yosemite").is(":checked") && $("#DeathValley").is(":checked") && $("#JoshuaTree").is(":checked") && !$("#MonumentValley").is(":checked") && !$("#Zion").is(":checked");
+            let q8aResponse = $("#Yosemite").is(":checked");
+            let q8bResponse = $("#DeathValley").is(":checked");
+            let q8cResponse = $("#JoshuaTree").is(":checked");
+            let q8dResponse = $("#MonumentValley").is(":checked");
+            let q8eResponse = $("#Zion").is(":checked");
 
-
-                alert(q3Response);
-                alert(q8Response);
             $.ajax({
                 method: "GET",
                 url: "/gradeQuiz",
@@ -149,12 +153,19 @@
                 data: {
                     "q1": q1Response,
                     "q2": q2Response,
-                    "q3": q3Response,
+                    "q3a": q3aResponse,
+                    "q3b": q3bResponse,
+                    "q3c": q3cResponse,
+                    "q3d": q3dResponse,
                     "q4": q4Response,
                     "q5": q5Response,
                     "q6": q6Response,
                     "q7": q7Response,
-                    "q8": q8Response
+                    "q8a": q8aResponse,
+                    "q8b": q8bResponse,
+                    "q8c": q8cResponse,
+                    "q8d": q8dResponse,
+                    "q8e": q8eResponse
                 },
                 success: function (result, status) {
                     // alert(result);
@@ -168,7 +179,7 @@
                     $("#q7Feedback").html(result.feedback7);
                     $("#q8Feedback").html(result.feedback8);
 
-                    if (result.feedback1 == "You got it!") {
+                    if (result.feedback1 == "Correct!") {
                         $("#q1Feedback").attr("class", "bg-success text-white");
                         $("#markImg1").html("<img src='img/checkmark.png' alt='checkmark'>");
                     } else {
@@ -176,7 +187,7 @@
                         $("#markImg1").html("<img src='img/xmark.png' alt='xmark'>");
                     }
 
-                    if (result.feedback2 == "You got it!") {
+                    if (result.feedback2 == "Correct!") {
                         $("#q2Feedback").attr("class", "bg-success text-white");
                         $("#markImg2").html("<img src='img/checkmark.png' alt='checkmark'>");
                     } else {
@@ -184,7 +195,7 @@
                         $("#markImg2").html("<img src='img/xmark.png' alt='xmark'>");
                     }
 
-                    if (result.feedback3 == "You got it!") {
+                    if (result.feedback3 == "Correct!") {
                         $("#q3Feedback").attr("class", "bg-success text-white");
                         $("#markImg3").html("<img src='img/checkmark.png' alt='checkmark'>");
                     } else {
@@ -192,7 +203,7 @@
                         $("#markImg3").html("<img src='img/xmark.png' alt='xmark'>");
                     }
 
-                    if (result.feedback4 == "You got it!") {
+                    if (result.feedback4 == "Correct!") {
                         $("#q4Feedback").attr("class", "bg-success text-white");
                         $("#markImg4").html("<img src='img/checkmark.png' alt='checkmark'>");
                     } else {
@@ -200,7 +211,7 @@
                         $("#markImg4").html("<img src='img/xmark.png' alt='xmark'>");
                     }
 
-                    if (result.feedback5 == "You got it!") {
+                    if (result.feedback5 == "Correct!") {
                         $("#q5Feedback").attr("class", "bg-success text-white");
                         $("#markImg5").html("<img src='img/checkmark.png' alt='checkmark'>");
                     } else {
@@ -208,7 +219,7 @@
                         $("#markImg5").html("<img src='img/xmark.png' alt='xmark'>");
                     }
 
-                    if (result.feedback6 == "You got it!") {
+                    if (result.feedback6 == "Correct!") {
                         $("#q6Feedback").attr("class", "bg-success text-white");
                         $("#markImg6").html("<img src='img/checkmark.png' alt='checkmark'>");
                     } else {
@@ -216,7 +227,7 @@
                         $("#markImg6").html("<img src='img/xmark.png' alt='xmark'>");
                     }
 
-                    if (result.feedback7 == "You got it!") {
+                    if (result.feedback7 == "Correct!") {
                         $("#q7Feedback").attr("class", "bg-success text-white");
                         $("#markImg7").html("<img src='img/checkmark.png' alt='checkmark'>");
                     } else {
@@ -224,18 +235,16 @@
                         $("#markImg7").html("<img src='img/xmark.png' alt='xmark'>");
                     }
 
-                    if (result.feedback8 == "You got it!") {
+                    if (result.feedback8 == "Correct!") {
                         $("#q8Feedback").attr("class", "bg-success text-white");
                         $("#markImg8").html("<img src='img/checkmark.png' alt='checkmark'>");
                     } else {
                         $("#q8Feedback").attr("class", "bg-warning text-white");
                         $("#markImg8").html("<img src='img/xmark.png' alt='xmark'>");
                     }
-
-
                 }
             });//ajax
-        });
+        });//submitBtn
     });//ready
 </script>
 

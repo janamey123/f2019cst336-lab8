@@ -17,38 +17,38 @@ app.get("/", function (req, res) {
 app.get("/gradeQuiz", function (req, res) {
     let score = 0;
     let f1, f2, f3, f4, f5, f6, f7, f8;
-    f1 = f2 = f3 = f4 = f5 = f6 = f7 = f8 = "Wrong!";
+    f1 = f2 = f3 = f4 = f5 = f6 = f7 = f8 = "Incorrect!";
     if (req.query.q1 == "sacramento") {
         score += 12.5;
-        f1 = "You got it!";
+        f1 = "Correct!";
     }
     if (req.query.q2 == "mo") {
         score += 12.5;
-        f2 = "You got it!";
+        f2 = "Correct!";
     }
-    if (req.query.q3 == "true") {
+    if (req.query.q3a == "false" && req.query.q3b == "false" && req.query.q3c == "true" && req.query.q3d == "true") {
         score += 12.5;
-        f3 = "You got it!";
+        f3 = "Correct!";
     }
     if (req.query.q4 == "Rhode Island") {
         score += 12.5;
-        f4 = "You got it!";
+        f4 = "Correct!";
     }
     if (req.query.q5 == "seal2") {
         score += 12.5;
-        f5 = "You got it!";
+        f5 = "Correct!";
     }
     if (req.query.q6 == "Southwest") {
         score += 12.5;
-        f6 = "You got it!";
+        f6 = "Correct!";
     }
     if (req.query.q7 == "vt") {
         score += 12.5;
-        f7 = "You got it!";
+        f7 = "Correct!";
     }
-    if (req.query.q8 == "true") {
+    if (req.query.q8a == "true" && req.query.q8b == "true" && req.query.q8c == "true" && req.query.q8d == "false" && req.query.q8e == "false") {
         score += 12.5;
-        f8 = "You got it!";
+        f8 = "Correct!";
     }
     res.send({
         "score": score,
