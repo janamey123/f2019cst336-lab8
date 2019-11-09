@@ -90,10 +90,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
 <script>
     $(document).ready(function () {
-
         displayQ4Choices();
         displayQ6Choices();
 
@@ -119,7 +117,6 @@
             $(".q5choice").css("background-color", ""); //resets background color
             $(this).css("background-color", "rgb(255, 255, 0)");
         })
-
 
         $("#submitBtn").on("click", function () {
             let q1Response = $("#q1").val();
@@ -247,6 +244,7 @@
                     } else {
                         $("#totalScore").attr("class", "text-success");
                     }
+
                     if (result.score < 80) {
                         $("#totalScore").html("Total Score: " + result.score);
                     } else {
