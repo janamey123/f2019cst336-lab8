@@ -11,6 +11,10 @@ app.use(express.urlencoded({extended: false}));
 
 // routes
 app.get("/", function (req, res) {
+    res.render("index");
+});
+
+app.get("/gradeQuiz", function (req, res) {
     let score = 0;
     let f1, f2, f3, f4, f5;
     f1 = f2 = f3 = f4 = f5 = "Wrong!";
@@ -18,11 +22,7 @@ app.get("/", function (req, res) {
         score += 12.5;
         f1 = "You got it!";
     }
-    res.render("index", {"score": score, "feedback1": f1, "query": req.query});
-});
-
-app.get("/gradeQuiz", function (req, res) {
-
+    res.send({"score": score, "feedback1": f1, "feedback2": f2});
 });
 
 
