@@ -5,6 +5,8 @@
     <title>US Quiz (Express)</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body class="text-center">
 
@@ -38,7 +40,7 @@
 <br>
 
 <h3><span id="markImg4"></span>What is the smallest US state?</h3>
-<div id="choices"></div>
+<div id="q4Choices"></div>
 <br><br>
 <div id="q4Feedback"></div>
 <br>
@@ -63,6 +65,16 @@
 <script>
     $(document).ready(function () {
 
+        displayQ4Choices();
+        //functions
+        function displayQ4Choices() {
+            let q4ChoicesArray = ["Maine", "Rhode Island", "Maryland", "Delaware"];
+            q4ChoicesArray = _.shuffle(q4ChoicesArray);
+            for (let i = 0; i < q4ChoicesArray.length; i++) {
+                $("#q4Choices").append(`<input type="radio" name="q4" id="${q4ChoicesArray[i]}" value="${q4ChoicesArray[i]}"> <label for="${q4ChoicesArray[i]}">${q4ChoicesArray[i]}</label>`);
+            }
+        }//displayQ4Choices
+
         //Event Listeners
         $(".q5choice").on("click", function () {
             $(".q5choice").css("background-color", ""); //resets background color
@@ -80,6 +92,8 @@
                         "q3b": $("#Franklin").is(":checked"),
                         "q3c": $("#Jefferson").is(":checked"),
                         "q3d": $("#Roosevelt").is(":checked"),
+                        "q4": $("#Rhode Island").is(":checked")
+
                 },
                 success: function (result, status) {
                    // alert(result);
@@ -87,7 +101,10 @@
                     $("#q1Feedback").html(result.feedback1);
                     $("#q2Feedback").html(result.feedback2);
                     $("#q3Feedback").html(result.feedback3);
+                    $("#q4Feedback").html(result.feedback4);
 
+
+                    alert($("#Rhode Island").is(":checked"))
 
                 }
             });//ajax

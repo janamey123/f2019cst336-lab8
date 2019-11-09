@@ -26,13 +26,15 @@ app.get("/gradeQuiz", function (req, res) {
         score += 12.5;
         f2 = "You got it!";
     }
-    console.log(req.query.q3a);
-
     if (!req.query.q3a && !req.query.q3b && req.query.q3c && req.query.q3d) {
         score += 12.5;
         f3 = "You got it!";
     }
-    res.send({"score": score, "feedback1": f1, "feedback2": f2, "feedback3": f3});
+    if (req.query.q4 == "Rhode Island") {
+        score += 12.5;
+        f4 = "You got it!";
+    }
+    res.send({"score": score, "feedback1": f1, "feedback2": f2, "feedback3": f3, "feedback4": f4});
 });
 
 
