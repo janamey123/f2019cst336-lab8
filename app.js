@@ -27,6 +27,7 @@ app.get("/gradeQuiz", function (req, res) {
         f2 = "You got it!";
     }
     if (req.query.q3a && req.query.q3b && !req.query.q3c && !req.query.q3d) {
+        console.log(req.query.q3a);
         score += 12.5;
         f3 = "You got it!";
     }
