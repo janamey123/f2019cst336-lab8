@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const question1 = false;
+let question1 = false;
 
 // you can optionally use handlebars
 app.set("view engine", "ejs");
@@ -25,10 +25,9 @@ app.get("/", function(req, res){
 app.post("/", function(req, res){
 
     var q1 = req.questions.question1;
-    console.log(q1);
     //req.questions["1"];
 
-    gradeQuiz();
+    gradeQuiz(q1);
 
     res.json({
         answers: [
@@ -42,8 +41,13 @@ app.post("/", function(req, res){
 
 } );
 
-function gradeQuiz() {
-
+function gradeQuiz(q1) {
+    //Question 1
+    if (q1Response == "sacramento") {
+        question1 = true;
+    } else {
+        question1 = false;
+    }
 } // gradeQuiz()
 
 
