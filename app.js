@@ -26,7 +26,7 @@ app.get("/gradeQuiz", function (req, res) {
         score += 12.5;
         f2 = "You got it!";
     }
-    if (req.query.q3) {
+    if (req.query.q3 == true) {
         score += 12.5;
         f3 = "You got it!";
     }

@@ -83,16 +83,19 @@
 
 
         $("#submitBtn").on("click", function () {
+            let q1Response = $("#q1").val();
+            let q2Response = $("#q2").val();
             let q3Response = !$("#Franklin").is(":checked") && !$("#Jackson").is(":checked") && $("#Jefferson").is(":checked") && $("#Roosevelt").is(":checked");
+            let q4Response = $("input[name=q4]:checked").val();
             alert(q3Response);
             $.ajax({
                 method: "GET",
                 url: "/gradeQuiz",
                 dataType: "json",
-                data: {"q1": $("#q1").val(),
-                        "q2": $("#q2").val(),
+                data: {"q1": q1Response,
+                        "q2": q2Response,
                         "q3": q3Response,
-                        "q4": $("input[name=q4]:checked").val()
+                        "q4": q4Response
                 },
                 success: function (result, status) {
                    // alert(result);
