@@ -12,10 +12,13 @@ app.use(express.urlencoded({extended: false}));
 // routes
 app.get("/", function (req, res) {
     let score = 0;
+    let f1, f2, f3, f4, f5;
+    f1 = f2 = f3 = f4 = f5 = "Wrong!";
     if (req.query.q1 == "sacramento") {
         score += 12.5;
+        f1 = "You got it!";
     }
-    res.render("index", {"score": score, "query": req.query});
+    res.render("index", {"score": score, "feedback1": f1, "query": req.query});
 });
 
 
