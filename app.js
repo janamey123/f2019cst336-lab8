@@ -22,6 +22,8 @@ app.get("/", function(req, res){
 // because the page was never left and still has the answers.)
 app.post("/", function(req, res){
 
+    log.console(res.body())
+
     res.json({
         answers: [
             {
