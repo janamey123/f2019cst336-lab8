@@ -131,7 +131,7 @@
 
         function displayQ6Choices() {
             let q6ChoicesArray = ["Deep South", "Northeast", "Southwest", "Pacific Northwest"];
-            q6ChoicesArray = _.shuffle(q6ChoicesArray);
+            //q6ChoicesArray = _.shuffle(q6ChoicesArray);
             for (let i = 0; i < q6ChoicesArray.length; i++) {
                 $("#q6Choices").append(`<input type="radio" name="q6" id="${q6ChoicesArray[i]}" value="${q6ChoicesArray[i]}"> <label for="${q6ChoicesArray[i]}">${q6ChoicesArray[i]}</label>`);
             }
